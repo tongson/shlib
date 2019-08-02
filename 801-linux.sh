@@ -1,16 +1,16 @@
-linux_osid()
+linux.osid()
 {
     [[ $(awk '(/^ID='${1}'/ || /^ID="'${1}'/ || /^ID=\x27'${1}'/) {n++} END {print n}' /etc/os-release) = "1" ]] && return 0
     return 1
 }
 
-linux_install()
+linux.install()
 {
-    if linux_osid "opensuse"
+    if linux.osid "opensuse"
     then
         zypper --non-interactive install --no-recommends "$@"
     fi
-    if linux_osid "debian"
+    if linux.osid "debian"
     then
          /usr/bin/env LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get -qq \
         --no-install-recommends  \
