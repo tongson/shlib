@@ -1,6 +1,3 @@
-set -o errexit -o nounset -o pipefail -o errtrace
-PATH=/bin:/sbin:/usr/bin:/usr/sbin
-
 trap '_TRAP_ERROR $? $LINENO "$BASH_COMMAND"' 1 2 3 15 ERR
 
 function _TRAP_ERROR() {
