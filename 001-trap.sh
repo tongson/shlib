@@ -4,6 +4,6 @@ function _TRAP_ERROR() {
     local err=$1
     local line=$2
     local command="$3"
-    printf '  -- TRAP --\n%s failed at line %s - exited with status: %s\n' $command $line $err
+    >&2 printf '  -- TRAP --\n%s failed at line %s - exited with status: %s' $command $line $err
     return $err
 }
