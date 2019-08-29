@@ -26,8 +26,6 @@
 # SOFTWARE.
 #
 
-unsetopt NO_MATCH >/dev/null 2>&1 || :
-
 # Dispatches calls of commands and arguments
 dispatch ()
 {
