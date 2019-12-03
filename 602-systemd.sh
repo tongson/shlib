@@ -1,7 +1,7 @@
 systemd.start()
 {
     systemctl daemon-reload
-    systemctl --now enable "$@"
+    systemctl enable --now "$@"
 }
 
 systemd.active()
