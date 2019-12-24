@@ -42,3 +42,21 @@ fn.copy_files()
      cd -
 }
 
+fn.fnmatch()
+{ 
+    case "$2" in $1) return 0 ;; *) return 1 ;; esac ;
+}
+
+fn.is_empty() (
+    cd "$1"
+    set -- .[!.]* ; test -f "$1" && return 1
+    set -- ..?* ; test -f "$1" && return 1
+    set -- * ; test -f "$1" && return 1
+    return 0
+)
+
+fn.quote()
+{
+    printf %s\\n "$1" | sed "s/'/'\\\\''/g;1s/^/'/;\$s/\$/'/" ;
+}
+
