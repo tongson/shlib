@@ -11,9 +11,10 @@ debian.aptget()
 
 debian.upgrade()
 {
-    debian.aptget update
-    debian.aptget upgrade
-    debian.aptget dist-upgrade
-    debian.aptget autoremove
-    debian.aptget autoclean
+    debian.aptget update &&
+    debian.aptget upgrade &&
+    debian.aptget dist-upgrade &&
+    debian.aptget autoremove || :
+    debian.aptget autoclean || :
+    systemctl reboot
 }
