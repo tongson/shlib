@@ -39,11 +39,11 @@ linux.chown()
 }
 
 linux.keygen() {
-    _t=$(mktemp -p .)
-    ssh-keygen -t rsa -b 4096 -f "$_t"
+    rm -f "$2.pub" "$2"
+    ssh-keygen -t rsa -b 4096 -P '' -f "$2"
     mkdir "/home/$2/.ssh"
-    mv "$_t.pub" "/home/$2/.ssh/authorized_keys"
-    mv "$_t" "/home/$2/.ssh/$1.rsa"
+    mv "$2.pub" "/home/$2/.ssh/authorized_keys"
+    mv "$2" "/home/$2/.ssh/$1.rsa"
     chmod 0600 "/home/$2/.ssh/$1.rsa"
 }
 
