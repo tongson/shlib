@@ -42,7 +42,7 @@ linux.keygen() {
     rm -f "$2.pub" "$2"
     ssh-keygen -t rsa -b 4096 -P '' -f "$2"
     mkdir "/home/$2/.ssh"
-    mv "$2.pub" "/home/$2/.ssh/authorized_keys"
+    mv "$2.pub" "/home/$2/.ssh/$1.pub"
     mv "$2" "/home/$2/.ssh/$1.rsa"
     chmod 0600 "/home/$2/.ssh/$1.rsa"
 }
