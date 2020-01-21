@@ -10,6 +10,10 @@ linux.install()
     then
         zypper --non-interactive install --no-recommends "$@"
     fi
+    if linux.osid "opensuse-tumbleweed"
+    then
+        zypper --non-interactive install --no-recommends "$@"
+    fi
     if linux.osid "debian"
     then
          /usr/bin/env LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get -qq \
