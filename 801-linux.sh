@@ -36,3 +36,13 @@ linux.chown()
 {
     chown -R "${2}:${2}" "/home/${1}"
 }
+
+linux.keygen() {
+    _t=$(mktemp -p .)
+    ssh-keygen -t rsa -b 4096 -f "$_t"
+    mkdir "/home/$2/.ssh"
+    mv "$_t.pub" "/home/$2/.ssh/authorized_keys"
+    mv "$_t" "/home/$2/.ssh/$1.rsa"
+    chmod 0600 "/home/$2/.ssh/$1.rsa"
+}
+
