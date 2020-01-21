@@ -21,3 +21,18 @@ linux.install()
         -o Dpkg::Options::='--force-confold' "$@"        
     fi
 }
+
+linux.useradd()
+{
+    if ! getent passwd "${1}"
+    then
+        useradd -M -U -u "${2}" "${1}"
+        passwd -d "${1}"
+        chown -R "${2}:${2}" "/home/${1}"
+    fi
+}
+
+linux.chown()
+{
+    chown -R "${2}:${2}" "/home/${1}"
+}
