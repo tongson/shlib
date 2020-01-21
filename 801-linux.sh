@@ -43,11 +43,14 @@ linux.chown()
 }
 
 linux.keygen() {
-    rm -f "$2.pub" "$2"
+    __tmpdir_linux_keygen=$(mktemp -d -p .)
+    cd "${__tmpdir_linux_keygen}"
     ssh-keygen -t rsa -b 4096 -P '' -f "$2"
-    mkdir "/home/$2/.ssh"
+    mkdir -p "/home/$2/.ssh"
     mv "$2.pub" "/home/$2/.ssh/$1.pub"
     mv "$2" "/home/$2/.ssh/$1.rsa"
     chmod 0600 "/home/$2/.ssh/$1.rsa"
+    cd ..
+    rm -rf "${__tmpdir_linux_keygen}"
 }
 
