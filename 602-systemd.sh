@@ -15,7 +15,8 @@ systemd.image()
     _name="${1%%:*}"
     _tag="${1##*:}"
     [ "$_name" = "$_tag" ] && _tag="latest"
-    _iid=$(/usr/bin/podman images | grep -F -- "/${_name} " | grep -F -- " $_tag " | awk '{print $3}')
+    _iid=$(/usr/bin/podman images |
+    awk -v name="$_name" -v tag="$_tag" '$0 ~ name {if ($2==tag) print $3}')
     sed -i "s|__IMAGE__|$_iid|" "/etc/systemd/system/${2}"
 }
 
