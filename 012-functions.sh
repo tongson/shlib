@@ -28,20 +28,6 @@ _Linterpolate()
     sed -i "s|__$1__|${!1}|g" $2
 }
 
-_Lcopy_files()
-{
-    cd "$1"
-        LIST=$(mktemp /tmp/__rsync.XXXXXXXXXX)
-        if [ -f "$LIST" ]
-        then
-            _Linfo 'Copying files from files folder...'
-            find files/ -type f | cut -d '/' -f 2- | tee "${LIST}" | sed 's/^/     \//'
-            rsync -lD --files-from="${LIST}" files/ /
-            rm "$LIST"
-        fi
-     cd -
-}
-
 _Lfnmatch()
 { 
     case "$2" in $1) return 0 ;; *) return 1 ;; esac ;
