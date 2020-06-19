@@ -1,40 +1,40 @@
-fn.print()
+_Lprint()
 {
     printf '[\e[1;33m+\e[m] \e[1;35m%s\e[m\n' "$@"
 }
 
-fn.info()
+_Linfo()
 {
     printf '\e[1;36m+\e[m \e[1;34minfo \e[m %s\n' "$@"
 }
 
-fn.debug()
+_Ldebug()
 {
     printf '\e[1;36m.\e[m \e[1;35mdebug\e[m %s\n' "$@"
 }
 
-fn.fatal()
+_Lfatal()
 {
     printf '\e[1;36m!\e[m \e[1;31mfatal\e[m %s\n' "$@"
 }
 
-fn.ok()
+_Lok()
 {
     printf '\e[1;36m*\e[m \e[1;32mok   \e[m %s\n' "$@"
 }
 
-fn.interpolate()
+_Linterpolate()
 {
     sed -i "s|__$1__|${!1}|g" $2
 }
 
-fn.copy_files()
+_Lcopy_files()
 {
     cd "$1"
         LIST=$(mktemp /tmp/__rsync.XXXXXXXXXX)
         if [ -f "$LIST" ]
         then
-            fn.info 'Copying files from files folder...'
+            _Linfo 'Copying files from files folder...'
             find files/ -type f | cut -d '/' -f 2- | tee "${LIST}" | sed 's/^/     \//'
             rsync -lD --files-from="${LIST}" files/ /
             rm "$LIST"
@@ -42,12 +42,12 @@ fn.copy_files()
      cd -
 }
 
-fn.fnmatch()
+_Lfnmatch()
 { 
     case "$2" in $1) return 0 ;; *) return 1 ;; esac ;
 }
 
-fn.is_empty() (
+_Lis_empty() (
     cd "$1"
     set -- .[!.]* ; test -f "$1" && return 1
     set -- ..?* ; test -f "$1" && return 1
@@ -55,7 +55,7 @@ fn.is_empty() (
     return 0
 )
 
-fn.quote()
+_Lquote()
 {
     printf %s\\n "$1" | sed "s/'/'\\\\''/g;1s/^/'/;\$s/\$/'/" ;
 }
