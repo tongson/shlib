@@ -23,18 +23,13 @@ _Lok()
     printf '\e[1;36m*\e[m \e[1;32mok   \e[m %s\n' "$@"
 }
 
-_Linterpolate()
-{
-    sed -i "s|__$1__|${!1}|g" "$2"
-}
-
 _Lfnmatch()
 { 
     case "$2" in $1) return 0 ;; *) return 1 ;; esac ;
 }
 
 _Lis_empty() (
-    cd "$1"
+    cd "$1" || return 1
     set -- .[!.]* ; test -f "$1" && return 1
     set -- ..?* ; test -f "$1" && return 1
     set -- * ; test -f "$1" && return 1
