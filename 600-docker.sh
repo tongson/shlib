@@ -1,4 +1,4 @@
-docker.pull()
+_Lpodman_pull()
 {
     # docker.pull docker://.... name:tag login:password
     _name="${2%%:*}"
