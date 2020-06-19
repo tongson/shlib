@@ -25,7 +25,7 @@ _Lok()
 
 _Linterpolate()
 {
-    sed -i "s|__$1__|${!1}|g" $2
+    sed -i "s|__$1__|${!1}|g" "$2"
 }
 
 _Lfnmatch()
