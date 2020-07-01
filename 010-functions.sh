@@ -1,34 +1,34 @@
-_Lprint()
+__print()
 {
     printf '[\e[1;33m+\e[m] \e[1;35m%s\e[m\n' "$@"
 }
 
-_Linfo()
+__info()
 {
     printf '\e[1;36m+\e[m \e[1;34minfo \e[m %s\n' "$@"
 }
 
-_Ldebug()
+__debug()
 {
     printf '\e[1;36m.\e[m \e[1;35mdebug\e[m %s\n' "$@"
 }
 
-_Lfatal()
+__fatal()
 {
     printf '\e[1;36m!\e[m \e[1;31mfatal\e[m %s\n' "$@"
 }
 
-_Lok()
+__ok()
 {
     printf '\e[1;36m*\e[m \e[1;32mok   \e[m %s\n' "$@"
 }
 
-_Lfnmatch()
+__fnmatch()
 { 
     case "$2" in $1) return 0 ;; *) return 1 ;; esac ;
 }
 
-_Lis_empty() (
+__is_empty() (
     cd "$1" || return 1
     set -- .[!.]* ; test -f "$1" && return 1
     set -- ..?* ; test -f "$1" && return 1
@@ -36,7 +36,7 @@ _Lis_empty() (
     return 0
 )
 
-_Lquote()
+__quote()
 {
     printf %s\\n "$1" | sed "s/'/'\\\\''/g;1s/^/'/;\$s/\$/'/" ;
 }
