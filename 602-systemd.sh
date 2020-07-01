@@ -34,6 +34,11 @@ systemd.disable()
     systemctl disable --now "$@"
 }
 
+systemd.reload()
+{
+    systemctl daemon-reload
+}
+
 systemd.restart()
 {
     systemctl daemon-reload
