@@ -1,16 +1,16 @@
-systemd.start()
+__systemd_enable()
 {
     systemctl daemon-reload
     systemctl enable --now "$@"
 }
 
-systemd.active()
+__systemd_active()
 {
     systemctl is-active "$@" && return 0
     return 1
 }
 
-systemd.image()
+__systemd_image()
 {
     _name="${1%%:*}"
     _tag="${1##*:}"
@@ -20,7 +20,7 @@ systemd.image()
     sed -i "s|__IMAGE__|$_iid|" "/etc/systemd/system/${2}"
 }
 
-systemd.stop()
+__systemd_stop()
 {
     systemctl stop "$@" 2>/dev/null || true
     until ! systemctl is-active --quiet "$@"
@@ -29,17 +29,17 @@ systemd.stop()
     done
 }
 
-systemd.disable()
+__systemd_disable()
 {
     systemctl disable --now "$@"
 }
 
-systemd.reload()
+__systemd_reload()
 {
     systemctl daemon-reload
 }
 
-systemd.restart()
+__systemd_restart()
 {
     systemctl daemon-reload
     systemctl restart "$@"

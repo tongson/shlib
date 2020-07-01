@@ -1,4 +1,4 @@
-_Lfetch()
+__fetch()
 {
 curl -H 'Pragma: no-cache' \
      -H 'Cache-Control: no-cache' \
