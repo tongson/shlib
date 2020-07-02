@@ -9,6 +9,11 @@ __debian_aptget()
         -o Dpkg::Options::="--force-confold" "$@"
 }
 
+__debian_purge()
+{
+        dpkg --purge --no-triggers --force-remove-essential --force-breaks --force-unsafe-io "$@"
+}
+
 __debian_upgrade()
 {
     __debian_aptget update &&
