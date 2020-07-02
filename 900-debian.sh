@@ -1,4 +1,4 @@
-debian.aptget()
+__debian_aptget()
 {
     /usr/bin/env LC_ALL=C DEBIAN_FRONTEND=noninteractive apt-get -qq \
         --no-install-recommends \
@@ -9,7 +9,7 @@ debian.aptget()
         -o Dpkg::Options::="--force-confold" "$@"
 }
 
-debian.upgrade()
+__debian_upgrade()
 {
     debian.aptget update &&
     debian.aptget full-upgrade &&
