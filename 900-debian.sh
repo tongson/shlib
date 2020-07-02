@@ -5,7 +5,7 @@ __debian_aptget()
         -o APT::Install-Suggests=0 \
         -o APT::Get::AutomaticRemove=1 \
         -o Dpkg::Use-Pty=0 \
-        -o Dpkg::Options::="--force-confdef" \
+        -o Dpkg::Options::="--force-unsafe-io" \
         -o Dpkg::Options::="--force-confold" "$@"
 }
 
