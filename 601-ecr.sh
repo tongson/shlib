@@ -1,4 +1,4 @@
-ecr.pull()
+__ecr_pull()
 {
     _name="${2%%:*}"
     _tag="${2##*:}"
