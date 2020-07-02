@@ -11,9 +11,9 @@ __debian_aptget()
 
 __debian_upgrade()
 {
-    debian.aptget update &&
-    debian.aptget full-upgrade &&
-    debian.aptget autoremove || :
-    debian.aptget autoclean || :
+    __debian_aptget update &&
+    __debian_aptget full-upgrade &&
+    __debian_aptget autoremove || :
+    __debian_aptget autoclean || :
     systemctl reboot
 }
