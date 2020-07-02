@@ -5,7 +5,7 @@ __podman_start()
     [ "$name" = "$tag" ] && tag="latest"
 
     # stop any existing container first
-    systemctl stop "podman:${name}.service" 2>&- ||:
+    systemctl disable --now "podman:${name}.service" 2>&- ||:
     until ! podman top "${name}" 2>&- 1>/dev/null
     do
         sleep 1
@@ -18,5 +18,5 @@ __podman_start()
 
     # start the systemd unit
     systemctl daemon-reload
-    systemctl --now enable "podman:${name}.service"
+    systemctl enable --now "podman:${name}.service"
 }
