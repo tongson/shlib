@@ -44,6 +44,7 @@ __quote()
 
 __wait_connrefused()
 {
+    command -v nc || { __fatal "netcat executable not found."; return 1; }
     _ip="${1%%:*}"
     _port="${1##*:}"
     _retries=0
@@ -59,6 +60,7 @@ __wait_connrefused()
 
 __wait_connection()
 {
+    command -v nc || { __fatal "netcat executable not found."; return 1; }
     _ip="${1%%:*}"
     _port="${1##*:}"
     _retries=0
