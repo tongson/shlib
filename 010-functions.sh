@@ -56,3 +56,18 @@ __wait_connrefused()
     test "$_retries" -lt "$_max" || { __fatal "Reached maximum retries."; exit 1; }
     done
 }
+
+__wait_connection()
+{
+    _ip="${1%%:*}"
+    _port="${1##*:}"
+    _retries=0
+    _max=16
+    until nc -vz "$_ip" "$_port"
+    do
+    __info "Waiting..."
+    sleep 1
+    _retries=$((_retries+1))
+    test "$_retries" -lt "$_max" || { __fatal "Reached maximum retries."; exit 1; }
+    done
+}
