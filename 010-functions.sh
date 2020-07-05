@@ -15,7 +15,7 @@ __debug()
 
 __fatal()
 {
-    printf '\e[1;36m!\e[m \e[1;31mfatal\e[m %s\n' "$@"
+    printf 1>&2 '\e[1;36m!\e[m \e[1;31mfatal\e[m %s\n' "$@"
 }
 
 __ok()
