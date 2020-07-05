@@ -50,10 +50,10 @@ __wait_connrefused()
     _max=16
     until ! nc -vz "$_ip" "$_port"
     do
-    __info "Waiting..."
+    __info "Retrying..."
     sleep 1
     _retries=$((_retries+1))
-    test "$_retries" -lt "$_max" || { __fatal "Reached maximum retries."; exit 1; }
+    test "$_retries" -lt "$_max" || { __fatal "Reached maximum retries."; return 1; }
     done
 }
 
@@ -65,9 +65,9 @@ __wait_connection()
     _max=16
     until nc -vz "$_ip" "$_port"
     do
-    __info "Waiting..."
+    __info "Retrying..."
     sleep 1
     _retries=$((_retries+1))
-    test "$_retries" -lt "$_max" || { __fatal "Reached maximum retries."; exit 1; }
+    test "$_retries" -lt "$_max" || { __fatal "Reached maximum retries."; return 1; }
     done
 }
