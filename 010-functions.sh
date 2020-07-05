@@ -49,7 +49,7 @@ __wait_connrefused()
     _port="${1##*:}"
     _retries=0
     _max=16
-    until ! nc -vz "$_ip" "$_port"
+    until ! nc -z "$_ip" "$_port"
     do
     __info "Retrying..."
     sleep 1
@@ -65,7 +65,7 @@ __wait_connection()
     _port="${1##*:}"
     _retries=0
     _max=16
-    until nc -vz "$_ip" "$_port"
+    until nc -z "$_ip" "$_port"
     do
     __info "Retrying..."
     sleep 1
