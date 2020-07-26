@@ -1,3 +1,9 @@
+__mark()
+{
+    printf >&2 '=== %s ===\n' "$@"
+    printf '=== %s ===\n' "$@"
+}
+
 __print()
 {
     printf '[\e[1;33m+\e[m] \e[1;35m%s\e[m\n' "$@"
