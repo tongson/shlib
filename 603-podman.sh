@@ -13,7 +13,7 @@ __podman_start()
 
     # get desired image ID and generate unit
     iid=$(podman images |
-    awk -v name="$name" -v tag="$tag" '$0 ~ name" " {if ($2==tag) print $3}')
+    awk -v name="/$name" -v tag="$tag" '$0 ~ name" " {if ($2==tag) print $3}')
     sed -i "s|__IMAGE__|$iid|" "/etc/systemd/system/podman:${name}.service"
 
     # start the systemd unit
