@@ -51,31 +51,31 @@ __quote()
 __wait_connrefused()
 {
     command -v nc || { __fatal "netcat executable not found."; return 1; }
-    _ip="${1%%:*}"
-    _port="${1##*:}"
-    _retries=0
-    _max=16
-    until ! nc -z "$_ip" "$_port"
+    local ip="${1%%:*}"
+    local port="${1##*:}"
+    local retries=0
+    local max=16
+    until ! nc -z "$ip" "$port"
     do
     __info "Retrying..."
     sleep 1
-    _retries=$((_retries+1))
-    test "$_retries" -lt "$_max" || { __fatal "Reached maximum retries."; return 1; }
+    retries=$((retries+1))
+    test "$retries" -lt "$max" || { __fatal "Reached maximum retries."; return 1; }
     done
 }
 
 __wait_connection()
 {
     command -v nc || { __fatal "netcat executable not found."; return 1; }
-    _ip="${1%%:*}"
-    _port="${1##*:}"
-    _retries=0
-    _max=16
-    until nc -z "$_ip" "$_port"
+    local ip="${1%%:*}"
+    local port="${1##*:}"
+    local retries=0
+    local max=16
+    until nc -z "$ip" "$port"
     do
     __info "Retrying..."
     sleep 1
-    _retries=$((_retries+1))
-    test "$_retries" -lt "$_max" || { __fatal "Reached maximum retries."; return 1; }
+    retries=$((retries+1))
+    test "$retries" -lt "$max" || { __fatal "Reached maximum retries."; return 1; }
     done
 }
