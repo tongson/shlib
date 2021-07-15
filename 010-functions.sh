@@ -4,6 +4,26 @@ __mark()
     printf '► “%s” \n' "$*"
 }
 
+__lock()
+{
+    if mkdir "$1"
+    then
+        __mark "Obtained lock."
+    else
+        __mark "Unable to obtain lock."
+    fi
+}
+
+__unlock()
+{
+    if rmdir "$1"
+    then
+        __mark "Released lock."
+    else
+        __mark "Unable to release lock."
+    fi
+}
+
 __print()
 {
     printf '[\e[1;33m+\e[m] \e[1;35m%s\e[m\n' "$@"
